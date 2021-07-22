@@ -40,7 +40,51 @@ class Airplane {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 //change for codegrade
-class Person {}
+class Person {
+  //Initalized with 'name' and 'age' from arguments
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    //all instances initialize with an empty stomach array
+    this.stomach = [];
+  }
+  //give instances of Person the ability to .eat('somefood')
+  eat(food) {
+    //pushes whatever food the user eats into the empty stomach array
+    console.log("eat method running");
+    //conditional for 10 items in the stomach
+    if (this.stomach.length < 10) {
+      this.stomach.push(food);
+    }
+  } //end of food method
+  //poop method
+  poop() {
+    this.stomach = [];
+  }
+  //toString method
+  toString() {
+    return `${this.name}, ${this.age}`;
+  }
+}
+
+//tests for task 1
+// const kristian = new Person("Kristian", 32);
+// console.log(kristian);
+
+// kristian.eat("Eggs");
+// kristian.eat("Steak");
+// kristian.eat("Burgers");
+// kristian.eat("Pizza");
+// kristian.eat("Popcorn");
+// kristian.eat("Cheese");
+// kristian.eat("Almonds");
+// kristian.eat("Mushrooms");
+// kristian.eat("BIG GULP");
+// kristian.eat("Eggs");
+// kristian.eat("Pasta");
+// console.log(kristian.stomach);
+// kristian.poop();
+// console.log(kristian.stomach);
 
 /*
   TASK 2
@@ -56,7 +100,25 @@ class Person {}
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-class Car {}
+class Car {
+  constructor(model, milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill(gallons) {
+    this.tank += gallons;
+  }
+  drive(distance) {
+    if (this.tank > 0) {
+      this.odometer += distance;
+      this.tank -= distance / this.milesPerGallon;
+    } else {
+      return `I ran out of fuel at ${this.odometer}`;
+    }
+  }
+}
 
 /*
   TASK 3
