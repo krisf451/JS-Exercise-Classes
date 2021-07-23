@@ -111,11 +111,14 @@ class Car {
     this.tank += gallons;
   }
   drive(distance) {
-    if (this.tank > 0) {
+    const driveableMiles = this.tank * this.milesPerGallon;
+    if (distance <= driveableMiles) {
       this.odometer += distance;
       this.tank -= distance / this.milesPerGallon;
     } else {
-      return `I ran out of fuel at ${this.odometer}`;
+      this.odometer += driveableMiles;
+      this.tank = 0;
+      return `I ran out of fuel at ${this.odometer} miles!`;
     }
   }
 }
@@ -243,7 +246,7 @@ class ProjectManager extends Instructor {
   standUp(slack) {
     return `${this.name} announces to ${slack}, @channel standy times!`;
   }
-  debugsCode(student) {
+  debugsCode(student, subject) {
     return `${this.name} debugs ${student.name}'s code on ${subject}`;
   }
 }
